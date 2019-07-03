@@ -108,7 +108,7 @@ func main() {
 		BrokerName: env.Broker,
 	})
 	if err = tracing.SetupDynamicZipkinPublishing(logger.Sugar(), configMapWatcher, zipkinServiceName); err != nil {
-		logger.Fatal("Error setting up Zipkin publishing", zap.Error(err))
+		logger.Error("Error setting up Zipkin publishing", zap.Error(err))
 	}
 
 	httpTransport, err := cloudevents.NewHTTPTransport(cloudevents.WithBinaryEncoding(), cehttp.WithMiddleware(pkgtracing.HTTPSpanMiddleware))
