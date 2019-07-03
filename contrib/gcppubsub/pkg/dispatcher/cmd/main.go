@@ -67,7 +67,7 @@ func main() {
 	kc := kubernetes.NewForConfigOrDie(mgr.GetConfig())
 	configMapWatcher := configmap.NewInformedWatcher(kc, system.Namespace())
 	if err = tracing.SetupDynamicZipkinPublishing(logger, configMapWatcher, "gcp-pubsub-dispatcher"); err != nil {
-		logger.Fatal("Error setting up Zipkin publishing", zap.Error(err))
+		logger.Error("Error setting up Zipkin publishing", zap.Error(err))
 	}
 
 	// We are running both the receiver (takes messages in from the cluster and writes them to

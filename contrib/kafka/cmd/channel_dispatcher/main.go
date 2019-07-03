@@ -112,7 +112,7 @@ func main() {
 
 	// Setup zipkin tracing.
 	if err = tracing.SetupDynamicZipkinPublishing(logger, opt.ConfigMapWatcher, "kafka-ch-dispatcher"); err != nil {
-		logger.Fatalw("Error setting up Zipkin publishing", zap.Error(err))
+		logger.Errorw("Error setting up Zipkin publishing", zap.Error(err))
 	}
 
 	if err := opt.ConfigMapWatcher.Start(stopCh); err != nil {

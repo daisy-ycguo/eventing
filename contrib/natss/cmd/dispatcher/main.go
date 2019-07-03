@@ -58,7 +58,7 @@ func main() {
 	kc := kubernetes.NewForConfigOrDie(mgr.GetConfig())
 	configMapWatcher := configmap.NewInformedWatcher(kc, system.Namespace())
 	if err = tracing.SetupDynamicZipkinPublishing(logger.Sugar(), configMapWatcher, "natss-dispatcher"); err != nil {
-		logger.Fatal("Error setting up Zipkin publishing", zap.Error(err))
+		logger.Error("Error setting up Zipkin publishing", zap.Error(err))
 	}
 
 	logger.Info("Dispatcher starting...")

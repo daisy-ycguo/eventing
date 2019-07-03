@@ -56,7 +56,7 @@ func NewController(
 	// Setup zipkin tracing.
 	iw := cmw.(*configmap.InformedWatcher)
 	if err := tracing.SetupDynamicZipkinPublishing(base.Logger, iw, "imc-dispatcher"); err != nil {
-		base.Logger.Fatalw("Error setting up Zipkin publishing", zap.Error(err))
+		base.Logger.Errorw("Error setting up Zipkin publishing", zap.Error(err))
 	}
 
 	sh, err := swappable.NewEmptyHandler(base.Logger.Desugar())
